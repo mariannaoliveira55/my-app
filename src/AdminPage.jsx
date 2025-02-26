@@ -8,7 +8,8 @@ function AdminPage() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://192.168.1.199:5001/get-users");
+        const response = await axios.get(axios.get("https://backend-kej9.onrender.com/get-users")
+      );
         setUsers(response.data); 
       } catch (err) {
         setError("Error fetching users. Please try again later.");

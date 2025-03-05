@@ -105,7 +105,7 @@ function Questionario() {
         (contagem["J"] >= contagem["P"] ? "J" : "P");
     
       try {
-        const response = await axios.post("https://backend-kej9.onrender.com/get-users", {
+        const response = await axios.post("https://backend-1-4ee8.onrender.com/get-users", {
           name: utilizador.nome,
           email: utilizador.email,
           result: tipo,

@@ -8,11 +8,12 @@ function AdminPage() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(axios.get("localhost:5001/get-users")
-      );
+        const response = await axios.get("https://backend-1-4ee8.onrender.com/get-users");
         setUsers(response.data); 
       } catch (err) {
+        console.error("Error fetching users:", err);
         setError("Error fetching users. Please try again later.");
+        setUsers([]); 
       }
     };
 
@@ -32,13 +33,19 @@ function AdminPage() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.result}</td>
+          {users.length > 0 ? (
+            users.map((user) => (
+              <tr key={user._id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.result}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3">No users found or unable to fetch data.</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

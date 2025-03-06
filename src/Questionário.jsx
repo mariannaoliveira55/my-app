@@ -104,22 +104,24 @@ function Questionario() {
         (contagem["T"] >= contagem["F"] ? "T" : "F") +
         (contagem["J"] >= contagem["P"] ? "J" : "P");
     
-      try {
-        const response = await axios.post("https://backend-1-4ee8.onrender.com/get-users", {
-          name: utilizador.nome,
-          email: utilizador.email,
-          result: tipo,
-        });
-    
-        console.log(response.data);
-        alert("Data saved successfully!");
-        navigate("/resultado", { state: { mbtiTipo: tipo } });
-
+      try { 
+          const response = await axios.post("https://backend-1-4ee8.onrender.com/save-user", { 
+            name: utilizador.nome,
+            email: utilizador.email,
+            result: tipo,
+          });
+        
+          console.log(response.data);
+          alert("Data saved successfully!");
+          navigate("/resultado", { state: { mbtiTipo: tipo } });
+        
       } catch (error) {
-        console.error("Error saving data:", error);
-        alert("Failed to save data.");
+          console.error("Error saving data:", error);
+          alert("Failed to save data.");
       }
-    };
+
+    }
+        
     
     return (
         <div>
